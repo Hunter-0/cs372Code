@@ -1,14 +1,27 @@
+//
+// File:   vector.h
+// Author: Your Glorious Instructor
+// Purpose:
+// A simplifed version of the C++ STL vector class
+
 #pragma once
 #include <iostream>
+
 template <typename T>
-class vector {
+class Vector {
 public:
-  vector() {
+  Vector() {
     arr = new T[1];
     vCapacity = 1;
     length = 0;
   }
-  ~vector() {
+  Vector(Vector& obj) {
+    this->arr = new T[obj.capacity()];
+    for (int i = 0; i < obj.size(); i++) {
+      this->put(i, obj.at(i));
+    }
+  }
+  ~Vector() {
     delete [] arr;
     arr = nullptr;
   }
@@ -57,7 +70,7 @@ public:
 		std::cout << std::endl;
   }
 
-	bool operator==(vector& other) const {
+	bool operator==(Vector& other) const {
 		if (other.size() != length) {
 			return false;
 		}
@@ -78,7 +91,7 @@ public:
     return at(i);
   }
 
-	vector& operator=(const vector& source) {
+	Vector& operator=(const Vector& source) {
 		// Do a self check.
 		if (this == &source)
 		{
