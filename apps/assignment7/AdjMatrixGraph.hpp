@@ -140,7 +140,7 @@ public:
         }
     }
 
-    void bfs(N s) {
+    void bfs(N s) {  //https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
         map<N, bool> visited;
 
         list<N> queue;
